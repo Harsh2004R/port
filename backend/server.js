@@ -1,14 +1,12 @@
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
+// Load environment variables
 const dotenv = require("dotenv");
 const envFile = process.env.NODE_ENV === "production" ? "prod.env" : "dev.env";
 dotenv.config({ path: path.resolve(__dirname, envFile) });
 const connectDB = require("./config/database");
 const errorHandler = require("./middleware/errorHandler");
-
-// Load environment variables
-dotenv.config();
 
 // Connect to database
 connectDB();
@@ -32,16 +30,12 @@ app.get("/", (req, res) => {
 });
 
 // Import routes
-// const userRoutes = require('./routes/users');
-// app.use('/api/users', userRoutes);
+
 
 // Error handling middleware
-// app.use(errorHandler);
+app.use(errorHandler);
 
-// 404 handler
-// app.use('*', (req, res) => {
-//   res.status(404).json({ message: 'Route not found' });
-// });
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
