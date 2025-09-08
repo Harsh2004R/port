@@ -9,11 +9,11 @@ const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
 
   const navItems = [
-    { name: 'Home', href: 'home' },
-    { name: 'Expertise', href: 'expertise' },
-    { name: 'Work', href: 'work' },
-    { name: 'Experience', href: 'experience' },
-    { name: 'Contact', href: 'contact' }
+    { name: '// Home', href: 'home' },
+    { name: '// Expertise', href: 'expertise' },
+    { name: '// Work', href: 'work' },
+    { name: '// Experience', href: 'experience' },
+    { name: '// Contact', href: 'contact' }
   ];
 
   // Handle scroll to update active section
