@@ -26,9 +26,9 @@ const Hero = () => {
   };
 
   const handleDownloadResume = () => {
-    // In a real application, you would link to your actual resume
+   
     const link = document.createElement('a');
-    link.href = '/resume.pdf'; // Placeholder - replace with actual resume
+    link.href = 'https://drive.google.com/uc?export=download&id=1fj19qekBJPV7Gk-ZDzEvm40BZiOuQmzX';
     link.download = 'Harsh_Sharma_Resume.pdf';
     link.click();
   };
@@ -96,7 +96,7 @@ const Hero = () => {
               Expert Full Stack Developer
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-400 mt-2">
-              Specializing in React.js, Tailwind CSS & Modern UI/UX Design
+              Specializing in React.js, Node.js & Modern UI/UX Design
             </p>
           </motion.div>
 
@@ -142,9 +142,9 @@ const Hero = () => {
             className="flex justify-center space-x-6"
           >
             {[
-              { icon: Github, href: 'https://github.com/harshsharma', label: 'GitHub' },
-              { icon: Linkedin, href: 'https://linkedin.com/in/harshsharma', label: 'LinkedIn' },
-              { icon: Twitter, href: 'https://twitter.com/harshsharma', label: 'Twitter' }
+              { icon: Github, href: 'https://github.com/Harsh2004R', label: 'GitHub' },
+              { icon: Linkedin, href: 'https://www.linkedin.com/in/harsh-sharma-0545aa25b/', label: 'LinkedIn' },
+              { icon: Twitter, href: 'https://x.com/Harsh2004R', label: 'Twitter' }
             ].map(({ icon: Icon, href, label }) => (
               <motion.a
                 key={label}
