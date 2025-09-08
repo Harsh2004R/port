@@ -37,6 +37,10 @@ app.use("/api/v1/projects", projectRoutes);
 const expertiesRoutes = require("./routes/experties");
 app.use("/api/v1/experties", expertiesRoutes);
 
+// Experience routes
+const experienceRoutes = require("./routes/experience");
+app.use("/api/v1/experience", experienceRoutes);
+
 // Error handling middleware
 app.use(errorHandler);
 
