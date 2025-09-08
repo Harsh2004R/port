@@ -39,6 +39,11 @@ const projectSchema = new mongoose.Schema({
     trim: true,
     maxlength: [500, "Project image URL cannot be more than 500 characters"],
   },
+  category:{
+    type: String,
+    required: [true, "Project category is required"],
+    trim: true,
+  },
   featured: {
     type: Boolean,
     default: false,
