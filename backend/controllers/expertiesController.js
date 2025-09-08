@@ -17,14 +17,24 @@ const getExperties = async (req, res, next) => {
 // @access  Private (Admin only)
 const createExperty = async (req, res, next) => {
   try {
-    const item = await Experty.create(req.body);
-    res
-      .status(201)
-      .json({
-        success: true,
-        message: "Experty created successfully",
-        data: item,
+    // Edge Case: Prevent duplicate skillName
+    const existing = await Experty.findOne({
+      skillName: req.body.skillName.trim(),
+    });
+
+    if (existing) {
+      return res.status(400).json({
+        success: false,
+        message: `Experty with skill "${req.body.skillName}" already exists`,
       });
+    }
+
+    const item = await Experty.create(req.body);
+    res.status(201).json({
+      success: true,
+      message: "Experty created successfully",
+      data: item,
+    });
   } catch (error) {
     next(error);
   }
@@ -46,13 +56,11 @@ const updateExperty = async (req, res, next) => {
         .json({ success: false, message: "Experty not found" });
     }
 
-    res
-      .status(200)
-      .json({
-        success: true,
-        message: "Experty updated successfully",
-        data: item,
-      });
+    res.status(200).json({
+      success: true,
+      message: "Experty updated successfully",
+      data: item,
+    });
   } catch (error) {
     next(error);
   }
