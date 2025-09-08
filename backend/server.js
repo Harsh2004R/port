@@ -13,7 +13,7 @@ connectDB();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-console.log(PORT,"port");
+console.log(PORT, "port");
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -30,28 +30,12 @@ app.get("/", (req, res) => {
 });
 
 // Import routes
-const projectRoutes = require('./routes/projects');
-app.use('/api/v1/projects', projectRoutes);
+const projectRoutes = require("./routes/projects");
+app.use("/api/v1/projects", projectRoutes);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Experties routes
+const expertiesRoutes = require("./routes/experties");
+app.use("/api/v1/experties", expertiesRoutes);
 
 // Error handling middleware
 app.use(errorHandler);
