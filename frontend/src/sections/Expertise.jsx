@@ -1,62 +1,75 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { 
-  Code, 
-  Palette, 
-  Database, 
-  Smartphone, 
-  Cloud, 
+import React from "react";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import {
+  Code,
+  Palette,
+  Database,
+  Smartphone,
+  Cloud,
   GitBranch,
   Zap,
   Shield,
   Globe,
-  Layers
-} from 'lucide-react';
+  Layers,
+} from "lucide-react";
 
 const Expertise = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.1
+    threshold: 0.1,
   });
 
   const skills = [
     {
-      category: 'Frontend Development',
+      category: "Frontend Development",
       icon: Code,
-      technologies: ['React.js', 'Next.js', 'Vue.js', 'TypeScript', 'JavaScript'],
-      color: 'from-blue-500 to-blue-600'
+      technologies: ["React.js", "HTML", "CSS", "JavaScript", "TypeScript"],
+      color: "from-blue-500 to-blue-600",
     },
     {
-      category: 'UI/UX Design',
+      category: "UI/UX Design",
       icon: Palette,
-      technologies: ['Tailwind CSS', 'Framer Motion', 'Figma', 'Adobe XD', 'CSS3'],
-      color: 'from-purple-500 to-purple-600'
+      technologies: ["Chakra UI", "Magic UI", "Tailwind CSS", "Canva", "Figma"],
+      color: "from-purple-500 to-purple-600",
     },
     {
-      category: 'Backend Development',
+      category: "Backend Development",
       icon: Database,
-      technologies: ['Node.js', 'Express.js', 'Python', 'Django', 'PostgreSQL'],
-      color: 'from-green-500 to-green-600'
+      technologies: [
+        "Node.js",
+        "Express.js",
+        "Web Sockets",
+        "Payment Gateway",
+        "NoSQL",
+        "SMTP",
+      ],
+      color: "from-green-500 to-green-600",
     },
     {
-      category: 'Mobile Development',
-      icon: Smartphone,
-      technologies: ['React Native', 'Flutter', 'Ionic', 'PWA', 'Responsive Design'],
-      color: 'from-pink-500 to-pink-600'
-    },
-    {
-      category: 'Cloud & DevOps',
+      category: "Cloud & DevOps",
       icon: Cloud,
-      technologies: ['AWS', 'Docker', 'Kubernetes', 'CI/CD', 'Vercel'],
-      color: 'from-orange-500 to-orange-600'
+      technologies: [
+        "Digital Ocean",
+        "Docker",
+        "Vercel",
+        "Netlify",
+        "Cloudinary",
+      ],
+      color: "from-orange-500 to-orange-600",
     },
     {
-      category: 'Tools & Version Control',
+      category: "Tools & Version Control",
       icon: GitBranch,
-      technologies: ['Git', 'GitHub', 'VS Code', 'Webpack', 'Vite'],
-      color: 'from-red-500 to-red-600'
-    }
+      technologies: ["Git", "GitHub", "VS Code", "Vite"],
+      color: "from-red-500 to-red-600",
+    },
+    {
+      category: "Operating systems",
+      icon: Smartphone,
+      technologies: ["Linux (ubuntu)", "Windows", "MacOS"],
+      color: "from-pink-500 to-pink-600",
+    },
   ];
 
   const containerVariants = {
@@ -65,9 +78,9 @@ const Expertise = () => {
       opacity: 1,
       transition: {
         delayChildren: 0.2,
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   const itemVariants = {
@@ -77,13 +90,16 @@ const Expertise = () => {
       opacity: 1,
       transition: {
         duration: 0.6,
-        ease: "easeOut"
-      }
-    }
+        ease: "easeOut",
+      },
+    },
   };
 
   return (
-    <section id="expertise" className="section-padding bg-gray-50 dark:bg-dark-800">
+    <section
+      id="expertise"
+      className="section-padding bg-gray-50 dark:bg-dark-800"
+    >
       <div className="container-custom">
         <motion.div
           ref={ref}
@@ -102,7 +118,8 @@ const Expertise = () => {
             variants={itemVariants}
             className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto"
           >
-            A comprehensive skill set spanning frontend, backend, and modern development practices
+            A comprehensive skill set spanning frontend, backend, and modern
+            development practices
           </motion.p>
         </motion.div>
 
@@ -121,7 +138,9 @@ const Expertise = () => {
             >
               <div className="bg-white dark:bg-dark-900 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700 h-full">
                 {/* Icon */}
-                <div className={`inline-flex p-3 rounded-lg bg-gradient-to-r ${skill.color} mb-4`}>
+                <div
+                  className={`inline-flex p-3 rounded-lg bg-gradient-to-r ${skill.color} mb-4`}
+                >
                   <skill.icon className="h-6 w-6 text-white" />
                 </div>
 
@@ -136,7 +155,9 @@ const Expertise = () => {
                     <motion.div
                       key={tech}
                       initial={{ opacity: 0, x: -20 }}
-                      animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                      animate={
+                        inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
+                      }
                       transition={{ delay: 0.1 * index + 0.05 * techIndex }}
                       className="flex items-center space-x-2"
                     >
@@ -166,13 +187,29 @@ const Expertise = () => {
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
               Additional Skills & Certifications
             </h3>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { icon: Zap, title: 'Performance Optimization', desc: 'Code splitting, lazy loading, caching strategies' },
-                { icon: Shield, title: 'Security Best Practices', desc: 'OWASP guidelines, authentication, data protection' },
-                { icon: Globe, title: 'SEO & Analytics', desc: 'Search optimization, Google Analytics, Core Web Vitals' },
-                { icon: Layers, title: 'Architecture Design', desc: 'Scalable systems, microservices, design patterns' }
+                {
+                  icon: Zap,
+                  title: "Performance Optimization",
+                  desc: "Code splitting, lazy loading, caching strategies",
+                },
+                {
+                  icon: Shield,
+                  title: "Security Best Practices",
+                  desc: "OWASP guidelines, authentication, data protection",
+                },
+                {
+                  icon: Globe,
+                  title: "SEO & Analytics",
+                  desc: "Search optimization, Google Analytics, Core Web Vitals",
+                },
+                {
+                  icon: Layers,
+                  title: "Architecture Design",
+                  desc: "Scalable systems, microservices, design patterns",
+                },
               ].map((item, index) => (
                 <motion.div
                   key={item.title}
