@@ -14,7 +14,7 @@ const Work = () => {
   const projects = [
     {
       id: 1,
-      title: 'E-Commerce Platform',
+      title: 'DJI global Platform',
       description: 'A full-stack e-commerce solution with React, Node.js, and PostgreSQL. Features include user authentication, payment integration, inventory management, and admin dashboard.',
       image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop&crop=center',
       technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe', 'Tailwind CSS'],
@@ -286,7 +286,7 @@ const Work = () => {
           className="text-center mt-12"
         >
           <motion.a
-            href="https://github.com/harshsharma"
+            href="https://github.com/harsh2004r"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}

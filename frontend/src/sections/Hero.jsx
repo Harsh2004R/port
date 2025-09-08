@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Download, Mail, Github, Linkedin, Twitter } from 'lucide-react';
 
@@ -25,6 +25,9 @@ const Hero = () => {
     }
   };
 
+  const profileImageUrl = "https://res.cloudinary.com/djbe55v48/image/upload/v1757311771/memoirra_assets/Harsh_passport_size_awlefn.jpg"
+  const [useFallback, setUseFallback] = useState(!profileImageUrl);
+
   const handleDownloadResume = () => {
    
     const link = document.createElement('a');
@@ -49,18 +52,29 @@ const Hero = () => {
           animate="visible"
           className="text-center max-w-4xl mx-auto"
         >
-          {/* Profile Image */}
+          {/* Profile Image */
+          }
           <motion.div
             variants={itemVariants}
             className="mb-8"
           >
             <div className="relative inline-block">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="w-32 h-32 sm:w-40 sm:h-40 mx-auto rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white text-4xl sm:text-5xl font-bold shadow-2xl"
-              >
-                HS
-              </motion.div>
+              {useFallback ? (
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  className="w-32 h-32 sm:w-40 sm:h-40 mx-auto rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white text-4xl sm:text-5xl font-bold shadow-2xl"
+                >
+                  HS
+                </motion.div>
+              ) : (
+                <motion.img
+                  whileHover={{ scale: 1.05 }}
+                  src={profileImageUrl}
+                  alt="Profile"
+                  onError={() => setUseFallback(true)}
+                  className="w-32 h-32 sm:w-40 sm:h-40 mx-auto rounded-full object-cover shadow-2xl"
+                />
+              )}
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
