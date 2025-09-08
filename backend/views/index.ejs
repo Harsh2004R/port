@@ -58,21 +58,34 @@
             <div class="endpoint">
                 <span class="method">GET</span> / - Server status
             </div>
+            
+            <h3 style="color: #333; margin-top: 30px;">Project Endpoints:</h3>
             <div class="endpoint">
-                <span class="method">GET</span> 
+                <span class="method">GET</span> /api/projects - Get all projects
             </div>
             <div class="endpoint">
-                <span class="method">POST</span>
+                <span class="method">GET</span> /api/projects/featured - Get featured projects
             </div>
             <div class="endpoint">
-                <span class="method">GET</span> 
+                <span class="method">GET</span> /api/projects/:id - Get project by ID
             </div>
-            <div class="endpoint">
-                <span class="method">PUT</span> 
+            <div class="endpoint" style="border-left-color: #ff9800;">
+                <span class="method" style="color: #ff9800;">POST</span> /api/projects - Create new project (Admin only)
             </div>
-            <div class="endpoint">
-                <span class="method">DELETE</span>
+            <div class="endpoint" style="border-left-color: #ff9800;">
+                <span class="method" style="color: #ff9800;">PUT</span> /api/projects/:id - Update project (Admin only)
             </div>
+            <div class="endpoint" style="border-left-color: #ff9800;">
+                <span class="method" style="color: #ff9800;">DELETE</span> /api/projects/:id - Delete project (Admin only)
+            </div>
+            <div class="endpoint" style="border-left-color: #ff9800;">
+                <span class="method" style="color: #ff9800;">PATCH</span> /api/projects/:id/featured - Toggle featured status (Admin only)
+            </div>
+        </div>
+        
+        <div style="margin-top: 30px; padding: 15px; background: #e3f2fd; border-radius: 5px;">
+            <h4 style="color: #1976d2; margin: 0 0 10px 0;">Admin Authentication:</h4>
+            <p style="margin: 0; color: #666;">For protected routes, include header: <code>x-admin-key: YOUR_ADMIN_SECRET</code></p>
         </div>
     </div>
 </body>

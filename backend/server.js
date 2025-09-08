@@ -13,7 +13,7 @@ connectDB();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-
+console.log(PORT,"port");
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -30,6 +30,8 @@ app.get("/", (req, res) => {
 });
 
 // Import routes
+const projectRoutes = require('./routes/projects');
+app.use('/api/v1/projects', projectRoutes);
 
 
 
