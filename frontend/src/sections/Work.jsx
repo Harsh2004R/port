@@ -1,95 +1,156 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { ExternalLink, Github, Eye, Filter } from 'lucide-react';
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { ExternalLink, Github, Eye, Filter } from "lucide-react";
 
 const Work = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.1
+    threshold: 0.1,
   });
 
-  const [activeFilter, setActiveFilter] = useState('all');
+  const [activeFilter, setActiveFilter] = useState("all");
 
   const projects = [
     {
       id: 1,
-      title: 'DJI global Platform',
-      description: 'A full-stack e-commerce solution with React, Node.js, and PostgreSQL. Features include user authentication, payment integration, inventory management, and admin dashboard.',
-      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop&crop=center',
-      technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe', 'Tailwind CSS'],
-      liveUrl: 'https://ecommerce-demo.com',
-      githubUrl: 'https://github.com/harshsharma/ecommerce-platform',
-      category: 'fullstack',
-      featured: true
+      title: "DJI global Platform",
+      description:
+        "A fully functional clone of the DJI official website with complete email authentication, payment processing, and identical UI. Experience the same user interface and functionality as the original | MERN|",
+      image:
+        "https://res.cloudinary.com/djbe55v48/image/upload/v1757338864/Portfolio/dji_dcqkj6.png",
+      technologies: [
+        "React.js",
+        "Node.js",
+        "MongoDB",
+        "Razorpay",
+        "Chakra UI",
+        "Cloudinary",
+        "Render",
+      ],
+      liveUrl: "https://dji-global.netlify.app/",
+      githubUrl: "https://github.com/Harsh2004R/drone_site",
+      category: "fullstack",
+      featured: true,
     },
     {
       id: 2,
-      title: 'Task Management App',
-      description: 'A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.',
-      image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop&crop=center',
-      technologies: ['React', 'Socket.io', 'MongoDB', 'Express', 'Framer Motion'],
-      liveUrl: 'https://taskmanager-demo.com',
-      githubUrl: 'https://github.com/harshsharma/task-manager',
-      category: 'frontend',
-      featured: true
+      title: "Dare To Visit",
+      description:
+        "A horror app including horror images, videos, podcasts, and more. It offers own social media platform for sharing contents, offers virtual horror tours, shocking experiences like predicting your death etc.",
+      image:
+        "https://res.cloudinary.com/djbe55v48/image/upload/v1757338864/Portfolio/DTV_qasgtn.png",
+      technologies: [
+        "React.js",
+        "Node.js",
+        "MongoDB",
+        "SMTP",
+        "Node-Mailer",
+        "Zustand store",
+      ],
+      liveUrl: "https://dare-to-visit.netlify.app",
+      githubUrl: "https://github.com/Harsh2004R/DTV",
+      category: "fullstack",
+      featured: true,
     },
     {
       id: 3,
-      title: 'Weather Dashboard',
-      description: 'A responsive weather dashboard with location-based forecasts, interactive maps, and detailed weather analytics.',
-      image: 'https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=600&h=400&fit=crop&crop=center',
-      technologies: ['Vue.js', 'Chart.js', 'OpenWeather API', 'PWA'],
-      liveUrl: 'https://weather-dashboard-demo.com',
-      githubUrl: 'https://github.com/harshsharma/weather-dashboard',
-      category: 'frontend',
-      featured: false
+      title: "Blog CMS",
+      description:
+        "A modern student / candidate needy portfolio website with all features required in a job ready portfolio. Including automatic mailing system and behind the seen section. ",
+      image:
+        "https://res.cloudinary.com/djbe55v48/image/upload/v1757338865/Portfolio/port2k24_tozuax.png",
+      technologies: [
+        "Magin UI",
+        "Tailwind css",
+        "React.js",
+        "Netlify",
+        "Framer motion",
+      ],
+      liveUrl: "https://cwd-portfolio2k24.netlify.app/",
+      githubUrl: "https://github.com/Harsh2004R/portfolio_2k24",
+      category: "frontend",
+      featured: false,
     },
     {
       id: 4,
-      title: 'Blog CMS',
-      description: 'A headless CMS for bloggers with markdown support, SEO optimization, and content management features.',
-      image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600&h=400&fit=crop&crop=center',
-      technologies: ['Next.js', 'Sanity CMS', 'Vercel', 'TypeScript'],
-      liveUrl: 'https://blog-cms-demo.com',
-      githubUrl: 'https://github.com/harshsharma/blog-cms',
-      category: 'fullstack',
-      featured: false
+      title: "Cors Web Duo",
+      description:
+        "An industry ready professional portfolio allows user to explore company insides and cantact to join coding club, offer service or consume services.",
+      image:
+        "https://res.cloudinary.com/djbe55v48/image/upload/v1757338860/Portfolio/CWD_ksewjj.png",
+      technologies: ["Vue.js", "Chart.js", "OpenWeather API", "PWA"],
+      liveUrl: "https://cors-web-duo.netlify.app/",
+      githubUrl: "https://github.com/Harsh2004R/CorsWebDuo-",
+      category: "fullstack",
+      featured: true,
     },
     {
       id: 5,
-      title: 'Portfolio Website',
-      description: 'A modern, responsive portfolio website with dark mode, smooth animations, and optimized performance.',
-      image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop&crop=center',
-      technologies: ['React', 'Tailwind CSS', 'Framer Motion', 'Vite'],
-      liveUrl: 'https://portfolio-demo.com',
-      githubUrl: 'https://github.com/harshsharma/portfolio',
-      category: 'frontend',
-      featured: false
+      title: "Carters E-comerce",
+      description:
+        "A Collaborative Construct week project Masai School Batch(JS201). This is a clone of carters.com Members of Project group are Ayush kr Shanu,Manideep Peddaboini,Harsh Sharma,Sambhaji Dhore,Mohd Sharique",
+      image:
+        "https://res.cloudinary.com/djbe55v48/image/upload/v1757339119/Portfolio/carters_srkfpe.png",
+      technologies: ["HTML", "CSS", "Java Script", "JSON Server", "Railway"],
+      liveUrl: "https://adorable-raindrop-e0f0b2.netlify.app",
+      githubUrl: "https://github.com/Ayush-kr-shanu/carters.com",
+      category: "frontend",
+      featured: false,
     },
     {
       id: 6,
-      title: 'API Gateway',
-      description: 'A microservices API gateway with authentication, rate limiting, and request routing capabilities.',
-      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop&crop=center',
-      technologies: ['Node.js', 'Express', 'Redis', 'Docker', 'Kubernetes'],
-      liveUrl: 'https://api-gateway-demo.com',
-      githubUrl: 'https://github.com/harshsharma/api-gateway',
-      category: 'backend',
-      featured: false
-    }
+      title: "Github repo viewer",
+      description:
+        "A simple and user friendly mini project where user can view others github profile on this platform.",
+      image:
+        "https://res.cloudinary.com/djbe55v48/image/upload/v1757339512/Portfolio/github-repo-viewer_engx49.png",
+      technologies: ["Vite"],
+      liveUrl:
+        "https://git-hub-repository-viewer-7yvulw3f2-harsh2004r.vercel.app/",
+      githubUrl: "https://github.com/Harsh2004R/gitHub_repository_viewer",
+      category: "frontend",
+      featured: false,
+    },
+    {
+      id: 7,
+      title: "Generic Pagination",
+      description:
+        "React application that demonstrates pagination functionality using the @ajna/pagination library and includes sorting and filtering features. The app also uses the Chakra UI library for the user interface.",
+      image:
+        "https://res.cloudinary.com/djbe55v48/image/upload/v1757339511/Portfolio/pagination_ijwts6.png",
+      technologies: ["React.js", "Chakra UI", "Ajna-npm", "Netlify"],
+      liveUrl: "https://pagination-j19gkomcg-harsh2004r.vercel.app/",
+      githubUrl: "https://github.com/Harsh2004R/sorting_filtering_pagination",
+      category: "frontend",
+      featured: false,
+    },
+    {
+      id: 8,
+      title: "API Gateway",
+      description:
+        "A microservices API gateway with authentication, rate limiting, and request routing capabilities.",
+      image:
+        "https://res.cloudinary.com/djbe55v48/image/upload/v1757342985/Portfolio/api_hhmhmb.jpg",
+      technologies: ["Node.js", "Express", "Multer", "Cloudinary"],
+      liveUrl: "https://drone-site-be2k24.onrender.com/",
+      githubUrl: "https://github.com/Harsh2004R/drone_site_BE2k24",
+      category: "backend",
+      featured: false,
+    },
   ];
 
   const filters = [
-    { key: 'all', label: 'All Projects' },
-    { key: 'frontend', label: 'Frontend' },
-    { key: 'backend', label: 'Backend' },
-    { key: 'fullstack', label: 'Full Stack' }
+    { key: "all", label: "All Projects" },
+    { key: "frontend", label: "Frontend" },
+    { key: "backend", label: "Backend" },
+    { key: "fullstack", label: "Full Stack" },
   ];
 
-  const filteredProjects = activeFilter === 'all' 
-    ? projects 
-    : projects.filter(project => project.category === activeFilter);
+  const filteredProjects =
+    activeFilter === "all"
+      ? projects
+      : projects.filter((project) => project.category === activeFilter);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -97,9 +158,9 @@ const Work = () => {
       opacity: 1,
       transition: {
         delayChildren: 0.2,
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   const itemVariants = {
@@ -109,9 +170,9 @@ const Work = () => {
       opacity: 1,
       transition: {
         duration: 0.6,
-        ease: "easeOut"
-      }
-    }
+        ease: "easeOut",
+      },
+    },
   };
 
   return (
@@ -134,7 +195,8 @@ const Work = () => {
             variants={itemVariants}
             className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8"
           >
-            A showcase of my recent projects and contributions to the development community
+            A showcase of my recent projects and contributions to the
+            development community
           </motion.p>
 
           {/* Filter Buttons */}
@@ -150,8 +212,8 @@ const Work = () => {
                 onClick={() => setActiveFilter(filter.key)}
                 className={`px-6 py-2 rounded-full font-medium transition-all duration-200 ${
                   activeFilter === filter.key
-                    ? 'bg-primary-600 text-white shadow-lg'
-                    : 'bg-gray-100 dark:bg-dark-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-dark-700'
+                    ? "bg-primary-600 text-white shadow-lg"
+                    : "bg-gray-100 dark:bg-dark-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-dark-700"
                 }`}
               >
                 {filter.label}
@@ -189,7 +251,7 @@ const Work = () => {
                       Featured
                     </div>
                   )}
-                  
+
                   {/* Overlay */}
                   <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
                     <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex space-x-4">
@@ -228,7 +290,7 @@ const Work = () => {
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors duration-200">
                     {project.title}
                   </h3>
-                  
+
                   <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm leading-relaxed">
                     {project.description}
                   </p>
@@ -281,10 +343,7 @@ const Work = () => {
         </motion.div>
 
         {/* View More Button */}
-        <motion.div
-          variants={itemVariants}
-          className="text-center mt-12"
-        >
+        <motion.div variants={itemVariants} className="text-center mt-12">
           <motion.a
             href="https://github.com/harsh2004r"
             target="_blank"
