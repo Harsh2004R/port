@@ -15,6 +15,8 @@ import {
   ExternalLink
 } from 'lucide-react';
 
+import { API_BASE_URL } from '../utils/base-url';
+
 const Contact = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -33,26 +35,27 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
+  const [toast, setToast] = useState({ visible: false, message: '' });
 
   const contactInfo = [
     {
       icon: Mail,
       label: 'Email',
-      value: 'harsh.sharma@example.com',
-      href: 'mailto:harsh.sharma@example.com',
+      value: 'harshsharmaktm03@gmail.com',
+      href: 'mailto:harshsharmaktm03@gmail.com',
       copyable: true
     },
     {
       icon: Phone,
       label: 'Phone',
-      value: '+1 (555) 123-4567',
-      href: 'tel:+15551234567'
+      value: '+91 7454982623',
+      href: 'tel:+91 7454982623'
     },
     {
       icon: MapPin,
       label: 'Location',
-      value: 'San Francisco, CA',
-      href: 'https://maps.google.com/?q=San+Francisco,CA'
+      value: 'Khatima 262308 (u.s nagar), Uttarakhand',
+      href: 'https://maps.google.com/?q=khatima'
     }
   ];
 
@@ -60,19 +63,19 @@ const Contact = () => {
     {
       icon: Github,
       label: 'GitHub',
-      href: 'https://github.com/harshsharma',
+      href: 'https://github.com/harsh2004r',
       color: 'hover:text-gray-900 dark:hover:text-white'
     },
     {
       icon: Linkedin,
       label: 'LinkedIn',
-      href: 'https://linkedin.com/in/harshsharma',
+      href: 'https://www.linkedin.com/in/harsh-sharma-0545aa25b/',
       color: 'hover:text-blue-600'
     },
     {
       icon: Twitter,
       label: 'Twitter',
-      href: 'https://twitter.com/harshsharma',
+      href: 'https://twitter.com/Harsh2004R',
       color: 'hover:text-blue-400'
     }
   ];
@@ -90,21 +93,23 @@ const Contact = () => {
     setIsSubmitting(true);
     setFormStatus({ type: '', message: '' });
 
-    // Simulate form submission
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
+      const res = await fetch(`${API_BASE_URL}/api/v1/contacts`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const json = await res.json();
+      if (!res.ok || !json.success) throw new Error(json.message || 'Failed to send');
+
       setFormStatus({
         type: 'success',
         message: 'Thank you for your message! I\'ll get back to you soon.'
       });
-      
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      });
+      setToast({ visible: true, message: 'Message sent successfully!' });
+      setTimeout(() => setToast({ visible: false, message: '' }), 3000);
+
+      setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
       setFormStatus({
         type: 'error',
