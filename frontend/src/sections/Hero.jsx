@@ -31,7 +31,8 @@ const Hero = () => {
   const handleDownloadResume = () => {
    
     const link = document.createElement('a');
-    link.href = 'https://drive.google.com/uc?export=download&id=1fj19qekBJPV7Gk-ZDzEvm40BZiOuQmzX';
+    // link.href = 'https://drive.google.com/uc?export=download&id=1fj19qekBJPV7Gk-ZDzEvm40BZiOuQmzX';
+    link.href=`https://drive.google.com/uc?export=download&id=1fj19qekBJPV7Gk-ZDzEvm40BZiOuQmzX`;
     link.download = 'Harsh_Sharma_Resume.pdf';
     link.click();
   };
