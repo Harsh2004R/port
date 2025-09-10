@@ -1,119 +1,122 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Send, 
-  CheckCircle, 
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  CheckCircle,
   AlertCircle,
   Github,
   Linkedin,
   Twitter,
   Copy,
-  ExternalLink
-} from 'lucide-react';
+  ExternalLink,
+} from "lucide-react";
 
-import { API_BASE_URL } from '../utils/base-url';
+import { API_BASE_URL } from "../utils/base-url";
 
-const Contact = () => {
+const Contact = ({ data, load }) => {
+  
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.1
+    threshold: 0.1,
   });
 
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
   const [formStatus, setFormStatus] = useState({
-    type: '',
-    message: ''
+    type: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
-  const [toast, setToast] = useState({ visible: false, message: '' });
+  const [toast, setToast] = useState({ visible: false, message: "" });
 
   const contactInfo = [
     {
       icon: Mail,
-      label: 'Email',
-      value: 'harshsharmaktm03@gmail.com',
-      href: 'mailto:harshsharmaktm03@gmail.com',
-      copyable: true
+      label: "Email",
+      value: "harshsharmaktm03@gmail.com",
+      href: "mailto:harshsharmaktm03@gmail.com",
+      copyable: true,
     },
     {
       icon: Phone,
-      label: 'Phone',
-      value: '+91 7454982623',
-      href: 'tel:+91 7454982623'
+      label: "Phone",
+      value: "+91 7454982623",
+      href: "tel:+91 7454982623",
     },
     {
       icon: MapPin,
-      label: 'Location',
-      value: 'Khatima 262308 (u.s nagar), Uttarakhand',
-      href: 'https://maps.google.com/?q=khatima'
-    }
+      label: "Location",
+      value: "Khatima 262308 (u.s nagar), Uttarakhand",
+      href: "https://maps.google.com/?q=khatima",
+    },
   ];
 
   const socialLinks = [
     {
       icon: Github,
-      label: 'GitHub',
-      href: 'https://github.com/harsh2004r',
-      color: 'hover:text-gray-900 dark:hover:text-white'
+      label: "GitHub",
+      href: "https://github.com/harsh2004r",
+      color: "hover:text-gray-900 dark:hover:text-white",
     },
     {
       icon: Linkedin,
-      label: 'LinkedIn',
-      href: 'https://www.linkedin.com/in/harsh-sharma-0545aa25b/',
-      color: 'hover:text-blue-600'
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/harsh-sharma-0545aa25b/",
+      color: "hover:text-blue-600",
     },
     {
       icon: Twitter,
-      label: 'Twitter',
-      href: 'https://twitter.com/Harsh2004R',
-      color: 'hover:text-blue-400'
-    }
+      label: "Twitter",
+      href: "https://twitter.com/Harsh2004R",
+      color: "hover:text-blue-400",
+    },
   ];
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setFormStatus({ type: '', message: '' });
+    setFormStatus({ type: "", message: "" });
 
     try {
       const res = await fetch(`${API_BASE_URL}/api/v1/contacts`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
       const json = await res.json();
-      if (!res.ok || !json.success) throw new Error(json.message || 'Failed to send');
+      if (!res.ok || !json.success)
+        throw new Error(json.message || "Failed to send");
 
       setFormStatus({
-        type: 'success',
-        message: 'Thank you for your message! I\'ll get back to you soon.'
+        type: "success",
+        message: "Thank you for your message! I'll get back to you soon.",
       });
-      setToast({ visible: true, message: 'Message sent successfully!' });
-      setTimeout(() => setToast({ visible: false, message: '' }), 3000);
+      setToast({ visible: true, message: "Message sent successfully!" });
+      setTimeout(() => setToast({ visible: false, message: "" }), 3000);
 
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      setFormData({ name: "", email: "", subject: "", message: "" });
     } catch (error) {
       setFormStatus({
-        type: 'error',
-        message: 'Sorry, there was an error sending your message. Please try again.'
+        type: "error",
+        message:
+          "Sorry, there was an error sending your message. Please try again.",
       });
     } finally {
       setIsSubmitting(false);
@@ -122,11 +125,11 @@ const Contact = () => {
 
   const copyEmail = async () => {
     try {
-      await navigator.clipboard.writeText('harsh.sharma@example.com');
+      await navigator.clipboard.writeText("harsh.sharma@example.com");
       setCopiedEmail(true);
       setTimeout(() => setCopiedEmail(false), 2000);
     } catch (err) {
-      console.error('Failed to copy email:', err);
+      console.error("Failed to copy email:", err);
     }
   };
 
@@ -136,9 +139,9 @@ const Contact = () => {
       opacity: 1,
       transition: {
         delayChildren: 0.2,
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   const itemVariants = {
@@ -148,9 +151,9 @@ const Contact = () => {
       opacity: 1,
       transition: {
         duration: 0.6,
-        ease: "easeOut"
-      }
-    }
+        ease: "easeOut",
+      },
+    },
   };
 
   return (
@@ -173,7 +176,8 @@ const Contact = () => {
             variants={itemVariants}
             className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto"
           >
-            Ready to work together? Let's discuss your next project and bring your ideas to life.
+            Ready to work together? Let's discuss your next project and bring
+            your ideas to life.
           </motion.p>
         </motion.div>
 
@@ -190,9 +194,9 @@ const Contact = () => {
                 Let's Connect
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-                I'm always interested in new opportunities and exciting projects. 
-                Whether you have a question, want to collaborate, or just want to say hi, 
-                feel free to reach out!
+                I'm always interested in new opportunities and exciting
+                projects. Whether you have a question, want to collaborate, or
+                just want to say hi, feel free to reach out!
               </p>
             </div>
 
@@ -215,8 +219,14 @@ const Contact = () => {
                     <div className="flex items-center space-x-2">
                       <a
                         href={info.href}
-                        target={info.href.startsWith('http') ? '_blank' : undefined}
-                        rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                        target={
+                          info.href.startsWith("http") ? "_blank" : undefined
+                        }
+                        rel={
+                          info.href.startsWith("http")
+                            ? "noopener noreferrer"
+                            : undefined
+                        }
                         className="text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200"
                       >
                         {info.value}
@@ -236,7 +246,7 @@ const Contact = () => {
                           )}
                         </motion.button>
                       )}
-                      {info.href.startsWith('http') && (
+                      {info.href.startsWith("http") && (
                         <ExternalLink className="h-4 w-4 text-gray-400" />
                       )}
                     </div>
@@ -279,7 +289,10 @@ const Contact = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label
+                      htmlFor="name"
+                      className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                    >
                       Name *
                     </label>
                     <input
@@ -294,7 +307,10 @@ const Contact = () => {
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                    >
                       Email *
                     </label>
                     <input
@@ -311,7 +327,10 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label
+                    htmlFor="subject"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                  >
                     Subject *
                   </label>
                   <input
@@ -327,7 +346,10 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                  >
                     Message *
                   </label>
                   <textarea
@@ -348,12 +370,12 @@ const Contact = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     className={`p-4 rounded-lg flex items-center space-x-2 ${
-                      formStatus.type === 'success'
-                        ? 'bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-300'
-                        : 'bg-red-100 dark:bg-red-900/20 text-red-800 dark:text-red-300'
+                      formStatus.type === "success"
+                        ? "bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-300"
+                        : "bg-red-100 dark:bg-red-900/20 text-red-800 dark:text-red-300"
                     }`}
                   >
-                    {formStatus.type === 'success' ? (
+                    {formStatus.type === "success" ? (
                       <CheckCircle className="h-5 w-5" />
                     ) : (
                       <AlertCircle className="h-5 w-5" />
@@ -392,7 +414,12 @@ const Contact = () => {
           className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700 text-center"
         >
           <p className="text-gray-600 dark:text-gray-300">
-            © 2024 Harsh Sharma. Built with React, Tailwind CSS, and Framer Motion.
+            {load ? (
+              <div className="animate-spin text-gray-600">⏳</div>
+            ) : (
+              <>©{data.year}</>
+            )}{" "}
+            Harsh Sharma. Built with React, Tailwind CSS, and Framer Motion.
           </p>
         </motion.div>
       </div>
