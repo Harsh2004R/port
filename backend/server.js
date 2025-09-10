@@ -55,7 +55,7 @@ app.use("/api/v1/contacts", contactRoutes);
 
 // Ping routes
 const pingRoutes = require("./routes/warmer.js")
-app.use("/api/v1",warmer)
+app.use("/api/v1",pingRoutes)
 // Error handling middleware
 app.use(errorHandler);
 
