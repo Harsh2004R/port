@@ -1,4 +1,8 @@
 // this route will handle cold start time on serverless deployment...
 // it will simply return a ping data...
-import {ping} from "../controllers/pingController.js"
-app.get("/ping", ping);
+
+const express = require("express");
+const router = express.Router();
+const { ping } = "../controllers/pingController.js";
+router.route("/ping", ping);
+module.exports = router;
