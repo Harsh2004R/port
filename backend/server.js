@@ -6,7 +6,7 @@ const dotenv = require("dotenv");
 const envFile = process.env.NODE_ENV === "production" ? "prod.env" : "dev.env";
 dotenv.config({ path: path.resolve(__dirname, envFile) });
 const connectDB = require("./config/database");
-const errorHandler = require("./middleware/errorHandler");
+const errorHandler = require("./middleware/errorHandler.js");
 
 // Connect to database
 connectDB();
@@ -30,29 +30,32 @@ app.get("/", (req, res) => {
 });
 
 // Import routes
-const projectRoutes = require("./routes/projects");
+const projectRoutes = require("./routes/projects.js");
 app.use("/api/v1/projects", projectRoutes);
 
 // Experties routes
-const expertiesRoutes = require("./routes/experties");
+const expertiesRoutes = require("./routes/experties.js");
 app.use("/api/v1/experties", expertiesRoutes);
 
 // Experience routes
-const experienceRoutes = require("./routes/experience");
+const experienceRoutes = require("./routes/experience.js");
 app.use("/api/v1/experience", experienceRoutes);
 
 // Education routes
-const educationRoutes = require("./routes/education");
+const educationRoutes = require("./routes/education.js");
 app.use("/api/v1/education", educationRoutes);
 
 // Certifications routes
-const certificationsRoutes = require("./routes/certifications");
+const certificationsRoutes = require("./routes/certifications.js");
 app.use("/api/v1/certifications", certificationsRoutes);
 
 // Contacts routes
-const contactRoutes = require("./routes/contacts");
+const contactRoutes = require("./routes/contacts.js");
 app.use("/api/v1/contacts", contactRoutes);
 
+// Ping routes
+const pingRoutes = require("./routes/warmer.js")
+app.use("/api/v1",warmer)
 // Error handling middleware
 app.use(errorHandler);
 
