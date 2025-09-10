@@ -1,3 +1,3 @@
-export const API_BASE_URL = 'http://localhost:3002';
+export const API_BASE_URL = "https://harsh-portfolio-y1e5.onrender.com/"
 
 
